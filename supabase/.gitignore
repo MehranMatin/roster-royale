@@ -1,0 +1,40 @@
+# Supabase
+.branches
+.temp
+.supabase/docker/
+.supabase/functions/*/node_modules
+.supabase/functions/*/dist
+.supabase/*.lock
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Local config
+config.local.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# dotenvx
+.env.keys
+
+# Secrets
+*.jwt
+*key.json
+*service-account*.json
+
+# Generated Supabase types
+/types/supabase.ts
+/src/types/supabase.ts
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.sql.gz
