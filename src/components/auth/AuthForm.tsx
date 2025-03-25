@@ -29,8 +29,8 @@ export default function AuthForm() {
         });
         if (error) throw error;
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An unkown error occured');
     } finally {
       setLoading(false);
     }
