@@ -1,9 +1,9 @@
-import AuthForm from '@/components/auth/AuthForm';
+// import AuthForm from '@/components/auth/AuthForm';
 
 export default function Home() {
   return (
     <div className='min-h-screen flex items-center justify-center'>
-      <AuthForm />
+      <h1>Home Page</h1>
     </div>
   );
 }
