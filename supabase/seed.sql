@@ -1,28 +1,3 @@
--- Insert user profiles
-INSERT INTO user_profiles (id, email) VALUES
-('9a408bde-4c30-4069-a42f-89536f40cb77', 'batman@dc.com'),
-('a03af806-c64a-468d-97a1-1e2a2f987fc2', 'superman@dc.com'),
-('a2e6ee23-74ef-40d5-b92d-032ac54da039', 'wonderwoman@dc.com'),
-('a3e6ee23-74ef-40d5-b92d-032ac54da039', 'flash@dc.com'),
-('d4c45bb0-4100-4de1-9b85-b7bbd24456e4', 'joker@dc.com'),
-('dc94f120-5d6f-45fa-8f00-ebe93f20e3f1', 'penguin@dc.com'),
-('e98675f1-0f08-41c1-8169-a63632c32d7f', 'lexluthor@dc.com'),
-('c78d8bcd-f92c-417a-bcae-9a50888f5622', 'doomsday@dc.com');
-
--- Create a league
-INSERT INTO leagues (id, name, description, owner_id, max_teams, scoring_type, season_year) VALUES
-(gen_random_uuid(), 'Gotham Fantasy League', 'Competitive league for Gotham''s finest', 
-'9a408bde-4c30-4069-a42f-89536f40cb77', 12, 'PPR', 2025);
-
--- Create teams
-INSERT INTO teams (id, name, user_id, league_id) 
-SELECT gen_random_uuid(), 'Dark Knights', '9a408bde-4c30-4069-a42f-89536f40cb77', id 
-FROM leagues WHERE name = 'Gotham Fantasy League';
-
-INSERT INTO teams (id, name, user_id, league_id)
-SELECT gen_random_uuid(), 'Boy Wonders', 'a03af806-c64a-468d-97a1-1e2a2f987fc2', id
-FROM leagues WHERE name = 'Gotham Fantasy League';
-
 -- Insert NFL Players
 INSERT INTO nfl_players (id, first_name, last_name, position, nfl_team, jersey_number) VALUES
 -- Quarterbacks
@@ -77,19 +52,6 @@ INSERT INTO nfl_players (id, first_name, last_name, position, nfl_team, jersey_n
 (gen_random_uuid(), 'Philadelphia', 'Eagles', 'DEF', 'PHI', NULL),
 (gen_random_uuid(), 'Baltimore', 'Ravens', 'DEF', 'BAL', NULL);
 
--- Insert roster spots
-INSERT INTO roster_spots (id, team_id, player_id, position, is_starter)
-SELECT 
-    gen_random_uuid(),
-    t.id,
-    p.id,
-    p.position,
-    true
-FROM teams t
-CROSS JOIN nfl_players p
-WHERE t.name = 'Dark Knights' 
-AND p.first_name IN ('Patrick', 'Christian');
-
 -- Insert player stats
 INSERT INTO player_stats (id, player_id, week, season_year, passing_yards, passing_tds, rushing_yards, rushing_tds, points_scored)
 SELECT 
@@ -121,18 +83,3 @@ SELECT
     END
 FROM nfl_players
 WHERE position IN ('QB', 'RB');
-
--- Insert matchups
-INSERT INTO matchups (id, league_id, week, season_year, home_team_id, away_team_id, home_team_score, away_team_score)
-SELECT 
-    gen_random_uuid(),
-    l.id,
-    1,
-    2024,
-    t1.id,
-    t2.id,
-    105.5,
-    98.2
-FROM leagues l
-JOIN teams t1 ON t1.name = 'Dark Knights'
-JOIN teams t2 ON t2.name = 'Boy Wonders';

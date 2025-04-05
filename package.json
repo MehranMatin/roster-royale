@@ -2,11 +2,15 @@
   "name": "roster-royale",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:reset": "supabase db reset",
+    "seed:auth": "tsx scripts/seed-auth.ts",
+    "db:setup": "supabase db reset && tsx scripts/seed-auth.ts && tsx scripts/seed-game-data.ts"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.2",
@@ -16,6 +20,7 @@
     "@supabase/supabase-js": "^2.49.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.7",
     "lucide-react": "^0.483.0",
     "next": "15.2.4",
     "postcss": "^8.5.3",
@@ -33,6 +38,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
     "tailwindcss": "^4.0.14",
-    "typescript": "^5"
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
   }
 }

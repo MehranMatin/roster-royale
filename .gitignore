@@ -53,7 +53,8 @@ logs
 
 # env files
 .env
-.env.*
+.env.local
+.env.*.local
 !.env.example
 
 # vercel
